@@ -2,8 +2,6 @@
 
 ## What is the task
 
-The task is to create a simulation of a game or senario using object oriented programming and other tequinches learnt in this unit. The simulation must 
-
 ## What am I doing
 
 ## Why am I doing it 
