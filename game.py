@@ -29,6 +29,28 @@ def plot_player(player):
     plt.scatter(xlist, ylist, s=slist, c=clist)
 
 
+def plot_with_annotate(string, pos, time, bgImg, pigsList, wolfList):
+    '''
+    plots all of the relevent things with annotation
+    '''
+    plt.imshow(bgImg)
+    plot_player(pigsList)
+    plot_player(wolfList)
+    plt.annotate(string, pos)
+    plt.pause(time)
+    plt.clf()
+
+
+def plot_without_annotate(time, bgImg, pigsList, wolfList):
+    '''
+    plots all of the relevent things without annotation
+    '''
+    plt.imshow(bgImg)
+    plot_player(pigsList)
+    plot_player(wolfList)
+    plt.pause(time)
+    plt.clf()
+
 def main():
     '''
     main function for game.py
@@ -90,11 +112,7 @@ def main():
                            1 - (board[i][j]/10)]
 
     # shows how the iinital setup looks
-    plt.imshow(bgImg)
-    plot_player(pigsList)
-    plot_player(wolfList)
-    plt.pause(5)
-    plt.clf()
+    plot_without_annotate(5, bgImg, pigsList, wolfList)
 
     # sets the variables for exiting the main and if it is dinner time
     gameFinished = False
@@ -105,20 +123,10 @@ def main():
             time = wolfList[0].time()
             if time is True:
                 print("It is dinner time!")
-                plt.imshow(bgImg)
-                plot_player(pigsList)
-                plot_player(wolfList)
-                plt.annotate("It is dinner time!", (edges[1]/2 - 3, 1))
-                plt.pause(5)
-                plt.clf()
+                plot_with_annotate("It is dinner time!", (edges[1]/2 - 3, 1), 2, bgImg, pigsList, wolfList)
             else:
                 print("The time is", time)
-                plt.imshow(bgImg)
-                plot_player(pigsList)
-                plot_player(wolfList)
-                plt.annotate("The time is " + str(time), (edges[1]/2 - 3, 1))
-                plt.pause(2)
-                plt.clf()
+                plot_with_annotate("The time is " + str(time), (edges[1]/2 - 3, 1), 2, bgImg, pigsList, wolfList)
                 # calculates the amout of steps the pigs should take and
                 # loops over each pig checking if they won
                 for i in range(time * smooth):
@@ -127,11 +135,7 @@ def main():
                                 gameFinished = True
                                 print(pig.name, "won the game!")
                     # creates the graph
-                    plt.imshow(bgImg)
-                    plot_player(pigsList)
-                    plot_player(wolfList)
-                    plt.pause(0.01)
-                    plt.clf()
+                    plot_without_annotate(0.001, bgImg, pigsList, wolfList)
         else:
             while gameFinished is False:
                 remPig = []  # empties the list
@@ -155,11 +159,7 @@ def main():
                             wolfOut[1],
                             "was caught!")
                 # creates the graph
-                plt.imshow(bgImg)
-                plot_player(pigsList)
-                plot_player(wolfList)
-                plt.pause(0.01)
-                plt.clf()
+                plot_without_annotate(0.001, bgImg, pigsList, wolfList)
 
 if __name__ == "__main__":
     main()

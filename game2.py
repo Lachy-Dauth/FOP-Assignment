@@ -27,8 +27,7 @@ def main():
     dinnerChance = 0.5  # the chance that the wolf calls dinner time
     defaultLand = 1  # default difficulty of land tiles
     smooth = 10  # inter frame claculations that
-    # improves the acruacy of the simulation and
-    # improves the animation smoothness
+    # improves the acruacy of the simulation
     edges = (len(initBoard), len(initBoard[0]))  # the size of the board
     board = np.zeros(edges)
     bgImg = np.zeros((*edges, 3))  # creates bgImg array
@@ -41,8 +40,8 @@ def main():
         dinnerChance = float(sys.argv[1])
         pigSpeed = float(sys.argv[2])
         wolfSpeed = float(sys.argv[3])
-        wolfTimeRange = [float(sys.argv[4]), float(sys.argv[5])]
-        smooth = float(sys.argv[6])
+        wolfTimeRange = [int(sys.argv[4]), int(sys.argv[5])]
+        smooth = int(sys.argv[6])
 
     # spawn animals and create board
     for i in range(len(initBoard)):

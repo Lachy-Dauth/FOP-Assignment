@@ -12,7 +12,7 @@ def dist2points(p1, p2):
     returns the distance between 2 points
     input is ((x1, y1), (x2, y2))
     '''
-    return (((p1[0] - p2[0])**2) + ((p1[1] - p2[1])**2))**0.5
+    return (((p1[0] - p2[0])**2) + ((p1[1] - p2[1]) ** 2)) ** 0.5
 
 
 # finds the pig closest to a point
@@ -23,7 +23,7 @@ def closest(point, pigs):
     '''
     arr = (((pig.x, pig.y), pig.name) for pig in pigs)
     largest = [0, 0]
-    dist = 10000
+    dist = 100000000
     name = ""
     for p in arr:
         if dist2points(point, p[0]) < dist:
@@ -89,18 +89,18 @@ class Wolf:
         distVer = (closestPig[1] - self.y)/dist
 
         # checking if the pig is caught if not moving the wolf
-        if abs(self.speed * distHor / smooth / (board[round(self.y)][round(self.x)])) < abs(closestPig[0] - self.x) and abs(self.speed * distVer / smooth / (board[round(self.y)][round(self.x)])) < abs(closestPig[1] - self.y):
+        if abs(dist) > abs(self.speed / smooth / (board[round(self.y)][round(self.x)])):
             self.x += self.speed * distHor / smooth / (board[round(self.y)][round(self.x)])
             self.y += self.speed * distVer / smooth / (board[round(self.y)][round(self.x)])
         else:
             return True, name
-        
+
         return False, False
 
 class Pig:
     '''
-    pig player 
-    
+    pig player
+
     init values:
     x
     y

@@ -14,6 +14,11 @@ low=$1
 hi=$2
 step=$3
 trials=$4
+pig=$5
+wolf=$6
+low_t=$7
+high_t=$8
+smooth=$9
 
 echo "Parameters are: " $low $hi $step $trials
 START=$(date +%s)
@@ -22,7 +27,7 @@ do
   for t in `seq 1 8 $trials`;
     do
     echo "Experiment: " $i $t
-    python3 game2.py $i & python3 game2.py $i & python3 game2.py $i & python3 game2.py $i & python3 game2.py $i & python3 game2.py $i & python3 game2.py $i & python3 game2.py $i
+    python3 game2.py $i $pig $wolf $low_t $high_t $smooth & python3 game2.py $i $pig $wolf $low_t $high_t $smooth & python3 game2.py $i $pig $wolf $low_t $high_t $smooth & python3 game2.py $i $pig $wolf $low_t $high_t $smooth & python3 game2.py $i $pig $wolf $low_t $high_t $smooth & python3 game2.py $i $pig $wolf $low_t $high_t $smooth & python3 game2.py $i $pig $wolf $low_t $high_t $smooth & python3 game2.py $i $pig $wolf $low_t $high_t $smooth
   done
 done
 END=$(date +%s)
